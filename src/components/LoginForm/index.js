@@ -7,6 +7,7 @@ import './index.css';
 const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [showSubmitError, setShowSubmitError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
     const navigate = useNavigate();
@@ -43,8 +44,8 @@ const LoginForm = () => {
         };
         const response = await fetch(url, options);
         const data = await response.json();
-        console.log(response);
-        console.log(data);
+        // console.log(response);
+        // console.log(data);
 
         if (response.ok === true) {
             onSubmitSuccess(data.jwtToken);
@@ -60,6 +61,10 @@ const LoginForm = () => {
     const onChangePassword = (event) => {
         setPassword(event.target.value);
     };
+
+    const onChangeShowPassword = (event) => {
+        setShowPassword(prev => !prev)
+    }
 
     const renderUsernameField = () => (
         <>
@@ -83,7 +88,7 @@ const LoginForm = () => {
                 PASSWORD
             </label>
             <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 className="password-input-field"
                 value={password}
@@ -113,6 +118,16 @@ const LoginForm = () => {
                 />
                 <div className="input-container">{renderUsernameField()}</div>
                 <div className="input-container">{renderPasswordField()}</div>
+                <div className="checkbox-input-container">
+                    <input
+                        type="checkbox"
+                        id="checkbox"
+                        className="checkbox-input"
+                        value={showPassword}
+                        onChange={onChangeShowPassword}
+                    />
+                    <label htmlFor="checkbox" className="input-label">Show Password</label>
+                </div>
                 <button type="submit" className="login-button">
                     Login
                 </button>

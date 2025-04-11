@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Cookies from 'js-cookie'
-import { TailSpin } from 'react-loader-spinner'
+import { ThreeDots } from 'react-loader-spinner'
 import { BsPlusSquare, BsDashSquare } from 'react-icons/bs'
 
 import CartContext from '../../context/CartContext'
@@ -72,7 +72,7 @@ const ProductItemDetails = () => {
 
     const renderLoadingView = () => (
         <div data-testid="loader" className="products-loader-container">
-            <TailSpin type="ThreeDots" color="#0b69ff" height={80} width={80} />
+            <ThreeDots type="ThreeDots" color="#0b69ff" height={80} width={80} />
         </div>
     )
 
