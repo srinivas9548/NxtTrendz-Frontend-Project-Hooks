@@ -1,3 +1,7 @@
+import Popup from 'reactjs-popup'
+
+import Payment from '../Payment'
+
 import CartContext from '../../context/CartContext'
 
 import './index.css'
@@ -19,13 +23,29 @@ const CartSummary = () => (
                             <span className="total-count"> Rs {totalCount}/-</span>
                         </h1>
                         <p className="total-items">{cartList.length} Items in cart</p>
-                        <button type="button" className="checkout-button btn-sm-none">
-                            Checkout
-                        </button>
+                        <Popup
+                            modal
+                            trigger={
+                                <button type="button" className="checkout-button btn-sm-none">
+                                    Checkout
+                                </button>
+                            }
+                            overlayClassName="popup-overlay"
+                        >
+                            {close => <Payment close={close} />}
+                        </Popup>
                     </div>
-                    <button type="button" className="checkout-button btn-lg-none">
-                        Checkout
-                    </button>
+                    <Popup
+                        modal
+                        trigger={
+                            <button type="button" className="checkout-button btn-lg-none">
+                                Checkout
+                            </button>
+                        }
+                        overlayClassName="popup-overlay"
+                    >
+                        {close => <Payment close={close} />}
+                    </Popup>
                 </div>
             )
         }}
